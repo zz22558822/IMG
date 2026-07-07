@@ -1,0 +1,176 @@
+graph TD
+    A("TP-Link SX105")
+    B("ESXi 8.0")
+    C("TrueNAS")
+    D("黑群暉")
+    E("AX3000 (子路由)")
+    F("QSW-2104-2T")
+    G("PC")
+    H("AX86U (主路由)")
+    I("AX3000 (子路由)")
+    J("AX5400 (子路由)")
+    K("ISP (350M/100M)")
+
+    A -- "10G" --> B
+    A -- "10G" --> C
+    A -- "10G" --> D
+    A -- "1G" --> E
+    A -- "10G" --> F
+    F -- "10G" --> G
+    F -- "2.5G" --> H
+    H -- "1G" --> I
+    K -- "2.5G" --> H
+    I -. "無線" .-> J
+
+
+
+
+
+
+
+
+
+
+
+graph TD
+    subgraph 網際網路與核心路由器
+        K("ISP (350M/100M)")
+        H("AX86U (主路由)")
+    end
+
+    subgraph 核心網路
+        A("TP-Link SX105")
+        F("QSW-2104-2T")
+        B("ESXi 8.0")
+        C("TrueNAS")
+        D("黑群暉")
+        G("PC")
+    end
+
+    subgraph 使用者與無線網路
+        I("AX3000 (子路由)")
+        J("AX5400 (子路由)")
+        E("AX3000 (子路由)")
+    end
+
+    K -- "2.5G" --> H
+    H -- "2.5G" --> F
+    F -- "10G" --> G
+    F -- "10G" --> A
+    A -- "10G" --> B
+    A -- "10G" --> C
+    A -- "10G" --> D
+    A -- "1G" --> E
+    H -- "1G" --> I
+    I -. 無線 .-> J
+
+
+
+
+
+
+
+
+
+
+
+
+graph TD
+    subgraph 網際網路與核心路由器
+        style 網際網路與核心路由器 fill:transparent,stroke:transparent
+        K("ISP (350M/100M)")
+        H("AX86U (主路由)")
+        K -- "2.5G" --> H
+    end
+
+    subgraph 核心網路
+        F("QSW-2104-2T")
+        A("TP-Link SX105")
+        F -- "10G" --> A
+        A -- "10G" --> B("ESXi 8.0")
+        A -- "10G" --> C("TrueNAS")
+        A -- "10G" --> D("黑群暉")
+        F -- "10G" --> G("PC")
+    end
+
+    subgraph 使用者與無線網路
+        I("AX3000 (子路由)")
+        J("AX5400 (子路由)")
+        E("AX3000 (子路由)")
+        I -. 無線 .-> J
+        A -- "1G" --> E
+    end
+
+    H -- "2.5G" --> F
+    H -- "1G" --> I
+
+
+
+
+
+
+
+
+
+
+graph TD
+        K("ISP (350M/100M)")
+        H("AX86U (主路由)")
+        K -- "2.5G" --> H
+
+        F("QSW-2104-2T")
+        A("TP-Link SX105")
+        F -- "10G" --> A
+        A -- "10G" --> B("ESXi 8.0")
+        A -- "10G" --> C("TrueNAS")
+        A -- "10G" --> D("黑群暉")
+        F -- "10G" --> G("PC")
+        direction TB
+        I("AX3000 (子路由)")
+        J("AX5400 (子路由)")
+        E("AX3000 (子路由)")
+        I -. 無線 .-> J
+
+
+
+    H -- "2.5G" --> F
+    H -- "1G" --> I
+    A -- "1G" --> E
+
+
+
+
+
+
+
+
+
+
+graph TD
+    subgraph 外網
+        style 外網 fill:transparent,stroke:transparent
+        K("ISP (350M/100M)")
+        H("AX86U (主路由)")
+        K -- "2.5G" --> H
+    end
+
+    subgraph 10G
+        F("QSW-2104-2T")
+        A("TP-Link SX105")
+        F -- "10G" --> A
+        A -- "10G" --> B("ESXi 8.0")
+        A -- "10G" --> C("TrueNAS")
+        A -- "10G" --> D("黑群暉")
+        F -- "10G" --> G("PC")
+    end
+
+    subgraph AI Mesh
+        I("AX3000 (子路由)")
+        J("AX5400 (子路由)")
+        E("AX3000 (子路由)")
+        I -. 無線 .-> J
+        A -- "1G" --> E
+    end
+
+    H -- "2.5G" --> F
+    H -- "1G" --> I
